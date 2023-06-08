@@ -15,7 +15,7 @@ const myGameArea = {
   canvas: document.getElementById("canvas"),
   start: function() {
     this.context = this.canvas.getContext("2d");
-    this.context.globalAlpha = 0.5;
+    this.context.globalAlpha = 1;
   },
   clear: function() {
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -204,7 +204,31 @@ function setup(arrayBuffer) {
   }
 
   myGameArea.canvas.width = minDistance * 40;
-  noteWidth = minDistance / 2;
+  noteWidth = 15;
+
+  // draw grid
+  const grid = document.getElementById("grid");
+  grid.width = minDistance * 40;
+  const ctx = grid.getContext("2d");
+  ctx.lineWidth = 15;
+  ctx.globalAlpha = 0.5;
+  ctx.fillStyle = "grey";
+
+
+  let position = 0;
+  while (position < grid.width) {
+    // draw game piece
+    //ctx.beginPath();
+    //ctx.moveTo(position, 0);
+    //ctx.lineTo(position, grid.height);
+    //ctx.strokeStyle = "green";
+    //ctx.stroke();
+    ctx.fillRect(position, 0, noteWidth, grid.height);
+  
+    // increment i
+    position += minDistance;
+  }
+
   
   resetVars();
 }
