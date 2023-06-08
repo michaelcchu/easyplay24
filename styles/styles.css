@@ -21,3 +21,6 @@
     grid-template-columns: auto;
     grid-gap: 8px;
 }
+
+#canvas {z-index: 1;}
+#grid {z-index: 0;}

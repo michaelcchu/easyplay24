@@ -15,7 +15,7 @@ const myGameArea = {
   canvas: document.getElementById("canvas"),
   start: function() {
     this.context = this.canvas.getContext("2d");
-    this.context.globalAlpha = 1;
+    this.context.globalAlpha = 1.0;
   },
   clear: function() {
       this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -32,7 +32,7 @@ function updateGameArea() {
   // loop through chords
   const time = chords[index][0].ticks;
   const ctx = myGameArea.context;
-  ctx.fillStyle = "blue";
+  ctx.fillStyle = "red";
 
   // starts by drawing the current chord (index i)
   // then continues to draw chords (as tick-marks on the page)
@@ -41,16 +41,12 @@ function updateGameArea() {
   while ((i < chords.length) && 
     (chords[i][0].ticks - time < myGameArea.canvas.width)) {
     // draw game piece
-    ctx.fillRect(chords[i][0].ticks - time, 0, noteWidth, 
-      myGameArea.canvas.height);
+    ctx.fillRect(chords[i][0].ticks - time, 0, 
+      noteWidth, myGameArea.canvas.height);
   
     // increment i
     i++;
   }
-
-  // draw pointer
-  ctx.fillStyle = "red";
-  ctx.fillRect(0, 0, noteWidth, myGameArea.canvas.height);
 }
 
 startGame();
@@ -203,19 +199,19 @@ function setup(arrayBuffer) {
     }
   }
 
-  myGameArea.canvas.width = minDistance * 40;
-  noteWidth = 15;
+  myGameArea.canvas.width = minDistance * 20;
+  noteWidth = minDistance * 0.5;
 
   // draw grid
   const grid = document.getElementById("grid");
-  grid.width = minDistance * 40;
+  grid.width = minDistance * 20;
   const ctx = grid.getContext("2d");
   ctx.globalAlpha = 0.5;
-  ctx.fillStyle = "grey";
+  ctx.fillStyle = "#DBDBDB";
 
   let position = 0;
   while (position < grid.width) {
-    ctx.fillRect(position, 0, noteWidth, grid.height);
+    ctx.fillRect(position, 0, minDistance * 0.5, grid.height);
   
     // increment position
     position += minDistance;
