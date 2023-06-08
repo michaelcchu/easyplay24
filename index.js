@@ -210,26 +210,17 @@ function setup(arrayBuffer) {
   const grid = document.getElementById("grid");
   grid.width = minDistance * 40;
   const ctx = grid.getContext("2d");
-  ctx.lineWidth = 15;
   ctx.globalAlpha = 0.5;
   ctx.fillStyle = "grey";
 
-
   let position = 0;
   while (position < grid.width) {
-    // draw game piece
-    //ctx.beginPath();
-    //ctx.moveTo(position, 0);
-    //ctx.lineTo(position, grid.height);
-    //ctx.strokeStyle = "green";
-    //ctx.stroke();
     ctx.fillRect(position, 0, noteWidth, grid.height);
   
-    // increment i
+    // increment position
     position += minDistance;
   }
 
-  
   resetVars();
 }
 
